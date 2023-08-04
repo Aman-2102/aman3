@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace list
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            company emp1 = new company()
+            { ID = 90, name = "aman", salary = 12000 };
+
+            company emp2 = new company()
+            { ID = 91, name = "rajesh", salary = 12000 }; 
+
+            company emp3 = new company()
+            { ID = 92, name = "karan", salary = 12000 };
+            List<company> emp = new List<company>(2)
+            // emp.Add(emp1);
+            // emp.Add(emp2); 
+            //  emp.Add(emp3);
+            // both can be done
+            {
+                emp1,emp2,emp3
+            };
+            foreach(company c in emp)
+            {
+                Console.WriteLine("ID ={0},Name ={1},Salary={2}", c.ID, c.name, c.salary);
+            }
+            List<string> country = new List<string>();
+            country.Add("india");
+            country.Add("russia");
+            country.Add("china");
+            List<string> newcountry = new List<string>();
+            newcountry.Add("korea");
+            newcountry.Add("hongkong");
+            country.Sort();
+            //Console.WriteLine("")
+             foreach (var item in country)
+                {
+                    Console.WriteLine(item);
+                };
+            country.AddRange(newcountry);
+            Console.WriteLine(emp.IndexOf(emp3, 1,2) +" "+"index of emp3");
+            Console.WriteLine("indexof india");
+            Console.WriteLine(country.IndexOf("india"));
+            Console.WriteLine("after add range:");
+            //Console.WriteLine(country.Remove("india"));
+            Console.WriteLine(country.Count + " "+ "count");
+           
+            foreach (var item in country)
+            {
+                Console.WriteLine(item );
+            };
+
+            Console.ReadKey();
+        }
+    }
+    public class company
+    {
+
+        public int ID { get; set; }
+        public string  name { get; set; }
+        public int salary { get; set; }
+
+    }
+}
