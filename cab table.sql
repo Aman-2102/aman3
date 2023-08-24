@@ -9,8 +9,7 @@ create table DriverLocation (DriverId int,DriverLocation int,Avaliablity varchar
 
 create table LocationMapping(LocationMappingId int identity(501,1),LocationName varchar(40))
 
-create table BookingDetail(BookingId int identity(1001,1),UserId int,DriverId int,PickupLocationId int
-,DropLocationId int ,Charge int)
+create table BookingDetail(BookingId int identity(1001,1),UserId int,DriverId int,UserDriveMappingId int,Charge int)
 insert into BookingDetail values(1,202,501,502,300)
 select * from DriverDetail
 select * from LocationMapping
@@ -21,5 +20,5 @@ select * from BookingDetail
 truncate table bookingdetail
 update DriverLocation set Avaliablity='yes'
 insert into BookingDetail(UserId,DriverId,PickupLocationId,DropLocationId)
-select ud.UserId,dd.DriverId,ud.PickupLocationId,ud.DropLocationId from UserDrive ud 
+select ud.UserId,dd.DriverId,ud.userdrivemappingid from UserDrive ud 
 cross join DriverLocation dd where ud.PickupLocationId=dd.DriverLocation
