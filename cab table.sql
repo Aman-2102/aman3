@@ -1,5 +1,5 @@
 
-create table UserDetail (UserId int identity(1,1),UserName varchar(30),Gender nvarchar(5),WalletAmount int)
+create table UserDetail (UserId int identity(1,1),UserName varchar(30),Gender nvarchar(5),WalletAmount int)00
 
 create table DriverDetail(DriverId int identity(201,1),DriverName varchar(30),Gender nvarchar(5))
 
