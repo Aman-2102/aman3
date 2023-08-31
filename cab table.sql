@@ -22,3 +22,9 @@ update DriverLocation set Avaliablity='yes'
 insert into BookingDetail(UserId,DriverId,PickupLocationId,DropLocationId)
 select ud.UserId,dd.DriverId,ud.userdrivemappingid from UserDrive ud 
 cross join DriverLocation dd where ud.PickupLocationId=dd.DriverLocation
+
+
+select * from locationtable lt join  locationoption lo on lo.locationmappingid=lt.locationmappingid 
+join DriverLocation dl on dl.DriverLocation=lt.locationmappingid  join UserDrive ud on ud.PickupLocationId=lo.optionid
+where dl.DriverLocation=lt.locationmappingid 
+and ud.PickupLocationId=lo.optionid
