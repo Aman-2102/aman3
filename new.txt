@@ -1,1 +1,69 @@
-new hai
+using System;
+using System.Linq;
+using MyDbContext; // Replace with your DbContext
+
+class Program
+{
+    static void Main()
+    {
+        string username = "exampleuser"; // Replace with the user's input
+        string userPhoneNumber = "+1234567890"; // Replace with the user's input
+
+        using (var dbContext = new MyDbContext()) // Replace with your DbContext
+        {
+            // Check if the user and phone number combination exists in the database
+            var user = dbContext.Users.FirstOrDefault(u => u.Username == username && u.PhoneNumber == userPhoneNumber);
+
+            if (user != null)
+            {
+                // User found in the database; proceed with OTP generation and verification
+                string generatedOtp = GenerateOtp(); // Generate OTP code
+
+                // Store the OTP in the database
+                user.OtpCode = generatedOtp;
+                dbContext.SaveChanges();
+
+                // Send OTP to the user (e.g., via SMS)
+                SendOtpViaSms(userPhoneNumber, generatedOtp);
+
+                // Prompt the user to enter the OTP
+                Console.WriteLine("Please enter the OTP sent to your phone:");
+
+                string userEnteredOtp = Console.ReadLine(); // Get user's input
+
+                // Verify the OTP
+                if (userEnteredOtp == generatedOtp)
+                {
+                    Console.WriteLine("OTP Code is valid!");
+
+                    // Move to the next page or perform other actions for successful verification
+                    // You can implement navigation logic here or call appropriate methods.
+
+                }
+                else
+                {
+                    Console.WriteLine("OTP Code is NOT valid!");
+                    // Handle the case where the OTP code is invalid
+                }
+            }
+            else
+            {
+                Console.WriteLine("User with the provided username and phone number not found.");
+                // Handle the case where the user and phone number combination is not in the database
+            }
+        }
+    }
+
+    // Generate a random OTP code (you can use your preferred method)
+    static string GenerateOtp()
+    {
+        Random random = new Random();
+        return random.Next(100000, 999999).ToString();
+    }
+
+    // Send OTP via SMS (you can use a service like Twilio)
+    static void SendOtpViaSms(string phoneNumber, string otpCode)
+    {
+        // Implement your SMS sending code here (e.g., using Twilio)
+    }
+}
