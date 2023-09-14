@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1> Registration Form</h1>
+    <form id="form"> 
+
+        
+    
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"required ><br>
+        <span id="nameError" class="error-message"></span><br>
+
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"required><br><br>
+        <span id="lnameError" class="error-message"></span><br>
+
+        <label for="Gender">Gender:</label><br>
+        <input type="radio" id="Male" name="Gender" value="Male">
+        <label for="gender">Male</label><br>
+        <input type="radio" id="Female" name="Gender" value="Female">
+        <label for="gender">Female</label><br><br>
+
+
+        <label for=""><b>BirthDate:</b></label>
+        <input type="date" id="birthday" name="birthdaytime"required><br><br>
+        <span id="birthdayError" class="error-message"></span><br>
+
+        <label for="area">Choose your Area:</label>
+        <select name="area" id="area">
+        <option value="ahmedabad">Ahmedabad</option>
+        <option value="kalol">kalol</option>
+        <option value="surat">Surat</option>
+        </select>
+        <br><br>
+
+        <p>Select vehicle for ride</p>
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+        <label for="vehicle1">  bike</label><br>
+        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+        <label for="vehicle1">  car</label><br>
+
+        <p>Upload Aadharcard</p>
+        <!-- <input type="file" id="myFile" name="filename"> -->
+        <input type="file" id="img" name="img" accept="image/*"required>
+        <span id="imgError" class="error-message"></span><br>
+
+        <p><label for="comment">Comment Suggestion:</label></p>
+        <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
+        <br>
+
+        <input type="submit" value="Submit">
+
+        
+    </form>
+    <script>
+        const form = document.getElementById("form");
+        const nameInput = document.getElementById("fname");
+        const lnameInput = document.getElementById("lname");
+        const birthdayInput = document.getElementById("birthday");
+        const imgInput = document.getElementById("img");
+
+        const nameError = document.getElementById("nameError");
+        const lnameError = document.getElementById("lnameInputError");
+        
+        const birthdayError = document.getElementById("birthdayInputError");
+        const imgError = document.getElementById("imgInputError");
+
+        form.addEventListener("submit", function(event) {
+            let isValid = true;
+
+            if (nameInput.value.trim() === "") {
+                nameError.textContent = "Name is required";
+                isValid = false;
+            } else {
+                nameError.textContent = "";
+            }
+
+            if (lnameInputError.value.trim() === "") {
+                lnameError.textContent = "lname is required";
+                isValid = false;
+            } else {
+                lnameError.textContent = "";
+            }
+
+            <!-- if (fnameInputError.value.trim() === "") {
+                fnameError.textContent = "Password is required";
+                isValid = false;
+            } else {
+                fnameError.textContent = "";
+            } -->
+
+            if (birthdayInputError.value.trim() === "") {
+                birthdayError.textContent = " is required";
+                isValid = false;
+            } else {
+                birthdayError.textContent = "";
+            }
+
+            if (imgInputError.value.trim() === "") {
+                imgError.textContent = "aadharcard is required";
+                isValid = false;
+            } else {
+                imgError.textContent = "";
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        });
+    </script>
+</body>
+</html>
