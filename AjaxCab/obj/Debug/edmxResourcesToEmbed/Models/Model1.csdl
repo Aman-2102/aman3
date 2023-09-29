@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CabBookingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BookingDetail">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="Int32" Nullable="false" />
+    <Property Name="UserMappingId" Type="Int32" />
+    <Property Name="Charge" Type="Int32" />
+    <Property Name="PaymentTypeId" Type="Int32" />
+    <Property Name="BookingTime" Type="DateTime" Precision="3" />
+    <Property Name="cancelBooking" Type="Int32" />
+    <Property Name="driverId" Type="Int32" />
+    <Property Name="tripStatus" Type="Int32" />
+    <Property Name="userid" Type="Int32" />
+    <NavigationProperty Name="DriverLocation" Relationship="Self.FK__BookingDe__drive__01142BA1" FromRole="BookingDetail" ToRole="DriverLocation" />
+  </EntityType>
+  <EntityType Name="DriverLocation">
+    <Key>
+      <PropertyRef Name="DriverMappingId" />
+    </Key>
+    <Property Name="DriverMappingId" Type="Int32" Nullable="false" />
+    <Property Name="DriverId" Type="Int32" />
+    <Property Name="DriverLocationId" Type="Int32" />
+    <Property Name="Avaliablity" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="balanceAmount" Type="Int32" />
+    <NavigationProperty Name="BookingDetails" Relationship="Self.FK__BookingDe__drive__01142BA1" FromRole="DriverLocation" ToRole="BookingDetail" />
+  </EntityType>
+  <EntityType Name="locationoption">
+    <Key>
+      <PropertyRef Name="optionId" />
+    </Key>
+    <Property Name="optionId" Type="Int32" Nullable="false" />
+    <Property Name="insideLocationName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="locationMappingid" Type="Int32" />
+    <NavigationProperty Name="locationTable" Relationship="Self.FK__locationo__locat__5FB337D6" FromRole="locationoption" ToRole="locationTable" />
+    <NavigationProperty Name="UserDrives" Relationship="Self.FK__UserDrive__DropL__7A672E12" FromRole="locationoption" ToRole="UserDrive" />
+    <NavigationProperty Name="UserDrives1" Relationship="Self.FK__UserDrive__Picku__797309D9" FromRole="locationoption" ToRole="UserDrive" />
+  </EntityType>
+  <EntityType Name="locationTable">
+    <Key>
+      <PropertyRef Name="LocationMappingId" />
+    </Key>
+    <Property Name="LocationMappingId" Type="Int32" Nullable="false" />
+    <Property Name="LocationName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="locationoptions" Relationship="Self.FK__locationo__locat__5FB337D6" FromRole="locationTable" ToRole="locationoption" />
+  </EntityType>
+  <EntityType Name="logindetail">
+    <Key>
+      <PropertyRef Name="loginid" />
+    </Key>
+    <Property Name="loginid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="otp" Type="Int32" />
+    <NavigationProperty Name="UserDetail" Relationship="Self.FK__logindeta__useri__29221CFB" FromRole="logindetail" ToRole="UserDetail" />
+  </EntityType>
+  <EntityType Name="paymentType">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="Int32" Nullable="false" />
+    <Property Name="PaymentType1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="WalletAmount" Type="Int32" />
+    <Property Name="usertype" Type="Int32" />
+    <Property Name="phoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="useremail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="userpass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="logindetails" Relationship="Self.FK__logindeta__useri__29221CFB" FromRole="UserDetail" ToRole="logindetail" />
+    <NavigationProperty Name="UserDrives" Relationship="Self.FK__UserDrive__UserI__787EE5A0" FromRole="UserDetail" ToRole="UserDrive" />
+  </EntityType>
+  <EntityType Name="UserDrive">
+    <Key>
+      <PropertyRef Name="UserDriveMappingId" />
+    </Key>
+    <Property Name="UserDriveMappingId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="PickupLocationId" Type="Int32" />
+    <Property Name="DropLocationId" Type="Int32" />
+    <NavigationProperty Name="locationoption" Relationship="Self.FK__UserDrive__DropL__7A672E12" FromRole="UserDrive" ToRole="locationoption" />
+    <NavigationProperty Name="locationoption1" Relationship="Self.FK__UserDrive__Picku__797309D9" FromRole="UserDrive" ToRole="locationoption" />
+    <NavigationProperty Name="UserDetail" Relationship="Self.FK__UserDrive__UserI__787EE5A0" FromRole="UserDrive" ToRole="UserDetail" />
+  </EntityType>
+  <EntityType Name="companyProfit">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bookingid" Type="Int32" />
+    <Property Name="profit" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__BookingDe__drive__01142BA1">
+    <End Role="DriverLocation" Type="Self.DriverLocation" Multiplicity="0..1" />
+    <End Role="BookingDetail" Type="Self.BookingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DriverLocation">
+        <PropertyRef Name="DriverMappingId" />
+      </Principal>
+      <Dependent Role="BookingDetail">
+        <PropertyRef Name="driverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__locationo__locat__5FB337D6">
+    <End Role="locationTable" Type="Self.locationTable" Multiplicity="0..1" />
+    <End Role="locationoption" Type="Self.locationoption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="locationTable">
+        <PropertyRef Name="LocationMappingId" />
+      </Principal>
+      <Dependent Role="locationoption">
+        <PropertyRef Name="locationMappingid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserDrive__DropL__7A672E12">
+    <End Role="locationoption" Type="Self.locationoption" Multiplicity="0..1" />
+    <End Role="UserDrive" Type="Self.UserDrive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="locationoption">
+        <PropertyRef Name="optionId" />
+      </Principal>
+      <Dependent Role="UserDrive">
+        <PropertyRef Name="DropLocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserDrive__Picku__797309D9">
+    <End Role="locationoption" Type="Self.locationoption" Multiplicity="0..1" />
+    <End Role="UserDrive" Type="Self.UserDrive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="locationoption">
+        <PropertyRef Name="optionId" />
+      </Principal>
+      <Dependent Role="UserDrive">
+        <PropertyRef Name="PickupLocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__logindeta__useri__29221CFB">
+    <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="0..1" />
+    <End Role="logindetail" Type="Self.logindetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="logindetail">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserDrive__UserI__787EE5A0">
+    <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="0..1" />
+    <End Role="UserDrive" Type="Self.UserDrive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserDrive">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbModels" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BookingDetails" EntityType="Self.BookingDetail" />
+    <EntitySet Name="DriverLocations" EntityType="Self.DriverLocation" />
+    <EntitySet Name="locationoptions" EntityType="Self.locationoption" />
+    <EntitySet Name="locationTables" EntityType="Self.locationTable" />
+    <EntitySet Name="logindetails" EntityType="Self.logindetail" />
+    <EntitySet Name="paymentTypes" EntityType="Self.paymentType" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+    <EntitySet Name="UserDrives" EntityType="Self.UserDrive" />
+    <EntitySet Name="companyProfits" EntityType="Self.companyProfit" />
+    <AssociationSet Name="FK__BookingDe__drive__01142BA1" Association="Self.FK__BookingDe__drive__01142BA1">
+      <End Role="DriverLocation" EntitySet="DriverLocations" />
+      <End Role="BookingDetail" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__locationo__locat__5FB337D6" Association="Self.FK__locationo__locat__5FB337D6">
+      <End Role="locationTable" EntitySet="locationTables" />
+      <End Role="locationoption" EntitySet="locationoptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserDrive__DropL__7A672E12" Association="Self.FK__UserDrive__DropL__7A672E12">
+      <End Role="locationoption" EntitySet="locationoptions" />
+      <End Role="UserDrive" EntitySet="UserDrives" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserDrive__Picku__797309D9" Association="Self.FK__UserDrive__Picku__797309D9">
+      <End Role="locationoption" EntitySet="locationoptions" />
+      <End Role="UserDrive" EntitySet="UserDrives" />
+    </AssociationSet>
+    <AssociationSet Name="FK__logindeta__useri__29221CFB" Association="Self.FK__logindeta__useri__29221CFB">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="logindetail" EntitySet="logindetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserDrive__UserI__787EE5A0" Association="Self.FK__UserDrive__UserI__787EE5A0">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="UserDrive" EntitySet="UserDrives" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

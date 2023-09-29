@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CabBookingModelStoreContainer" CdmEntityContainer="CabBookingEntities">
+    <EntitySetMapping Name="BookingDetails">
+      <EntityTypeMapping TypeName="CabBookingModel.BookingDetail">
+        <MappingFragment StoreEntitySet="BookingDetail">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="UserMappingId" ColumnName="UserMappingId" />
+          <ScalarProperty Name="Charge" ColumnName="Charge" />
+          <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+          <ScalarProperty Name="BookingTime" ColumnName="BookingTime" />
+          <ScalarProperty Name="cancelBooking" ColumnName="cancelBooking" />
+          <ScalarProperty Name="driverId" ColumnName="driverId" />
+          <ScalarProperty Name="tripStatus" ColumnName="tripStatus" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverLocations">
+      <EntityTypeMapping TypeName="CabBookingModel.DriverLocation">
+        <MappingFragment StoreEntitySet="DriverLocation">
+          <ScalarProperty Name="DriverMappingId" ColumnName="DriverMappingId" />
+          <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+          <ScalarProperty Name="DriverLocationId" ColumnName="DriverLocationId" />
+          <ScalarProperty Name="Avaliablity" ColumnName="Avaliablity" />
+          <ScalarProperty Name="balanceAmount" ColumnName="balanceAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="locationoptions">
+      <EntityTypeMapping TypeName="CabBookingModel.locationoption">
+        <MappingFragment StoreEntitySet="locationoption">
+          <ScalarProperty Name="optionId" ColumnName="optionId" />
+          <ScalarProperty Name="insideLocationName" ColumnName="insideLocationName" />
+          <ScalarProperty Name="locationMappingid" ColumnName="locationMappingid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="locationTables">
+      <EntityTypeMapping TypeName="CabBookingModel.locationTable">
+        <MappingFragment StoreEntitySet="locationTable">
+          <ScalarProperty Name="LocationMappingId" ColumnName="LocationMappingId" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logindetails">
+      <EntityTypeMapping TypeName="CabBookingModel.logindetail">
+        <MappingFragment StoreEntitySet="logindetail">
+          <ScalarProperty Name="loginid" ColumnName="loginid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="otp" ColumnName="otp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paymentTypes">
+      <EntityTypeMapping TypeName="CabBookingModel.paymentType">
+        <MappingFragment StoreEntitySet="paymentType">
+          <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+          <ScalarProperty Name="PaymentType1" ColumnName="PaymentType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="CabBookingModel.UserDetail">
+        <MappingFragment StoreEntitySet="UserDetail">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="WalletAmount" ColumnName="WalletAmount" />
+          <ScalarProperty Name="usertype" ColumnName="usertype" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="useremail" ColumnName="useremail" />
+          <ScalarProperty Name="userpass" ColumnName="userpass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDrives">
+      <EntityTypeMapping TypeName="CabBookingModel.UserDrive">
+        <MappingFragment StoreEntitySet="UserDrive">
+          <ScalarProperty Name="UserDriveMappingId" ColumnName="UserDriveMappingId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PickupLocationId" ColumnName="PickupLocationId" />
+          <ScalarProperty Name="DropLocationId" ColumnName="DropLocationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companyProfits">
+      <EntityTypeMapping TypeName="CabBookingModel.companyProfit">
+        <MappingFragment StoreEntitySet="companyProfit">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="bookingid" ColumnName="bookingid" />
+          <ScalarProperty Name="profit" ColumnName="profit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="InsertUserdetail" FunctionName="CabBookingModel.Store.InsertUserdetail" />
+    <FunctionImportMapping FunctionImportName="updateuserdetail" FunctionName="CabBookingModel.Store.updateuserdetail" />
+  </EntityContainerMapping>
+</Mapping>
